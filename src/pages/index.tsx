@@ -1,6 +1,8 @@
+import { DefaultLayout } from "@/layouts/DefaultLayout"
 import { signOut, useSession } from "next-auth/react"
+import { NextPageWithLayout } from "./_app"
 
-export default function Home() {
+const HomePage: NextPageWithLayout = () => {
   const { data } = useSession()
   return (
     <pre>
@@ -9,3 +11,13 @@ export default function Home() {
     </pre>
   )
 }
+
+HomePage.getLayout = (page) => {
+  return (
+    <DefaultLayout title="Inicio">
+      {page}
+    </DefaultLayout>
+  )
+}
+
+export default HomePage;
