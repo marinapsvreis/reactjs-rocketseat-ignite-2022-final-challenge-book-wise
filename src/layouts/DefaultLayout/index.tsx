@@ -1,3 +1,4 @@
+import { Sidebar } from "@/components/Sidebar"
 import Head from "next/head"
 import { ReactNode } from "react"
 import { Container, Content } from "./styles"
@@ -14,7 +15,7 @@ export const DefaultLayout = ({children, title}: DefaultLayoutProps) => {
         <title>{`${title} | BookWise`}</title>
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon"/>
       </Head>
-      <aside>sidebar</aside>
+      <Sidebar/>
       <Content>
         {children}
       </Content>
