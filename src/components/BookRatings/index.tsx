@@ -31,16 +31,16 @@ export const BookRatings = ({ bookId, ratings }: BookRatingsProps) => {
 
   const canRate = ratings.every(x => x.user_id !== session?.user?.id);
 
-  console.log(session)
-
   return (
     <Container>
       <header>
         <Text>Avaliações</Text>
         {canRate && (
-          <RatingWrapper>
-            <Link withoutIcon onClick={handleRate} text="Avaliar" color="purple" />
-          </RatingWrapper>
+          <LoginDialog>
+            <RatingWrapper>
+              <Link withoutIcon onClick={handleRate} text="Avaliar" color="purple" />
+            </RatingWrapper>
+          </LoginDialog>
         )}
       </header>
 
