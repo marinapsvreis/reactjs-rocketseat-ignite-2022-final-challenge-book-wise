@@ -5,7 +5,7 @@ import Link from "next/link"
 import { RatingStars } from "../RatingStars"
 import { Heading, Text } from "../Typography"
 import { Avatar } from "../ui/Avatar"
-import { BookContent, BookDetails, BookImage, Container, TootleShowMoreButton, UserDetails } from "./styles"
+import { BookContent, BookDetails, BookImage, CompactDetails, Container, TootleShowMoreButton, UserDetails } from "./styles"
 
 export type RatingWithAuthorAndBook = Rating & {
   user: User
@@ -14,18 +14,20 @@ export type RatingWithAuthorAndBook = Rating & {
 
 type RatingCardProps = {
   rating: RatingWithAuthorAndBook
+  variant?: 'default' | 'compact'
 }
 
 const MAX_SUMMARY_LENGTH = 180
 
-export const RatingCard = ({ rating }: RatingCardProps) => {
+export const RatingCard = ({ rating, variant = "default" }: RatingCardProps) => {
   const distance = getRelativeTimeString(new Date(rating.created_at), "pt-BR")
 
   const { text: bookSummary, toggleShowMore, isShowingMore } = useToggleShowMore(rating.book.summary, MAX_SUMMARY_LENGTH)
 
   return (
-    <Container>
-      <UserDetails>
+    <Container variant={variant}>
+      { variant === 'default' && (
+        <UserDetails>
         <section>
           <Link href={`/profile/${rating.user_id}`}>
             <Avatar src={rating.user.avatar_url!} alt={rating.user.name}/>
@@ -38,6 +40,7 @@ export const RatingCard = ({ rating }: RatingCardProps) => {
 
         <RatingStars rating={rating.rate}/>
       </UserDetails>
+      ) }
 
       <BookDetails>
         <Link href={`/explore?book=${rating.book_id}`}>
@@ -45,6 +48,12 @@ export const RatingCard = ({ rating }: RatingCardProps) => {
         </Link>
         <BookContent>
           <div>
+            { variant === 'compact' && (
+              <CompactDetails>
+                <Text size="sm" color="gray-300">{distance}</Text>
+                <RatingStars rating={rating.rate} />
+              </CompactDetails>
+            ) }
             <Heading size="xs">{rating.book.name}</Heading>
             <Text size="sm" color="gray-400">{rating.book.author}</Text>
           </div>
