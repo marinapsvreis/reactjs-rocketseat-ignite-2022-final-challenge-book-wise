@@ -36,11 +36,9 @@ export const BookRatings = ({ bookId, ratings }: BookRatingsProps) => {
       <header>
         <Text>Avaliações</Text>
         {canRate && (
-          <LoginDialog>
             <RatingWrapper>
               <Link withoutIcon onClick={handleRate} text="Avaliar" color="purple" />
             </RatingWrapper>
-          </LoginDialog>
         )}
       </header>
 
