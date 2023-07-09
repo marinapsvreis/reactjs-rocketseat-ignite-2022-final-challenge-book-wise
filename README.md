@@ -19,6 +19,7 @@
 - React Query
 - Axios
 - Zod
+- Radix UI
 - OAuth Google
 - OAuth Github
 - Prisma
