@@ -6,7 +6,7 @@ import { ActionIcon } from "../ui/ActionIcon"
 import { Check, X } from "@phosphor-icons/react"
 import { useSession } from "next-auth/react"
 import { FormEvent, useState } from "react"
-import { RatingStars } from "../PopularBooks/RatingStars"
+import { RatingStars } from "../RatingStars"
 import { api } from "@/lib/axios"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
